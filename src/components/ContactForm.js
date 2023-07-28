@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const ContactForm = ({ createContact }) => {
+  const navigate = useNavigate()
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
 
@@ -20,8 +22,7 @@ const ContactForm = ({ createContact }) => {
       number: newNumber,
     })
 
-    setNewName('')
-    setNewNumber('')
+    navigate('/contacts')
   }
 
   return (

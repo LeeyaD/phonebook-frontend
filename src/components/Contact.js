@@ -1,9 +1,19 @@
+import { useNavigate } from 'react-router-dom'
+
 function Contact({ contact, handleDelete }) {
+  const navigate = useNavigate()
+
+  const deleteContact = (event) => {
+    handleDelete(event)
+    navigate('/contacts') 
+  }
+
+
   return (
-    <li className="contact">
-      {contact.name} {contact.number}
-      <button onClick={handleDelete} data-id={contact.id}>delete</button>
-    </li>
+    <div className="contact">
+      {contact?.name} {contact?.number}
+      <button onClick={deleteContact} data-id={contact?.id}>delete</button>
+    </div>
   )
 }
 

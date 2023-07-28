@@ -22,7 +22,11 @@ const create = async (newObject) => {
 }
 
 const remove = (id) => {
-  axios.delete(`${baseURL}/${id}`)
+  const config = {
+    headers: { Authorization: token },
+  }
+
+  axios.delete(`${baseURL}/${id}`, config)
 }
 
 const update = (id, updatedPersonObj) => {

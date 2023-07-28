@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
+import { useNavigate } from 'react-router-dom'
 
 const LoginForm = ({ login }) => {
+  const navigate = useNavigate()
   const [ username, setUsername ] = useState('')
   const [ password, setPassword ] = useState('')
 
@@ -23,6 +25,7 @@ const LoginForm = ({ login }) => {
 
     setUsername('')
     setPassword('')
+    navigate('/')
   }
 
   return (

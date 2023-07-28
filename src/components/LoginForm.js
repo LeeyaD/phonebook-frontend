@@ -1,30 +1,22 @@
-import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
+import { useField } from '../hooks'
 
 const LoginForm = ({ login }) => {
   const navigate = useNavigate()
-  const [ username, setUsername ] = useState('')
-  const [ password, setPassword ] = useState('')
-
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value)
-  }
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value)
-  }
+  const { clear: clearusr, ...username } = useField('text')
+  const { clear: clearpswd, ...password } = useField('password')
 
   const logUserIn = (event) => {
     event.preventDefault()
 
     login({
-      username,
-      password
+      username: username.value,
+      password: password.value
     })
 
-    setUsername('')
-    setPassword('')
+    clearusr()
+    clearpswd()
     navigate('/')
   }
 
@@ -37,17 +29,15 @@ const LoginForm = ({ login }) => {
           username
           <input
             id='username'
-            value={username}
-            onChange={handleUsernameChange}
+            value={username.value}
+            onChange={username.onChange}
           />
         </div>
         <div>
           password
           <input
             id='password'
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
+            {...password}
           />
         </div>
         <button id='login-button' type="submit">login</button>

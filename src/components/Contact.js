@@ -5,7 +5,7 @@ function Contact({ contact, handleDelete }) {
 
   const deleteContact = (event) => {
     handleDelete(event)
-    navigate('/contacts') 
+    navigate('/contacts')
   }
 
 
